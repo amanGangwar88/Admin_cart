@@ -116,7 +116,7 @@
 									<td>Lorem ipsum dolor</td>
 									<td><a href="#" title="title">Sit amet</a></td>
 									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
+									<td>Donec tortor diam</td> 
 									<td>
 										<!-- Icons -->
 										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>

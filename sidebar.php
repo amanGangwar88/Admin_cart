@@ -2,7 +2,7 @@
     <div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
     <?php $filename = basename($_SERVER['REQUEST_URI']); ?>
 			<h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
-		  
+		   
 			<!-- Logo (221px wide) -->
 			<a href="#"><img id="logo" src="resources/images/logo.png" alt="Simpla Admin logo" /></a>
 		  
