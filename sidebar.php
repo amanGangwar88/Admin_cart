@@ -1,4 +1,5 @@
-<div id="sidebar"><div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
+<div id="sidebar">
+    <div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
 			
 			<h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
 		  
@@ -22,23 +23,31 @@
 				
 				<li> 
 					<a href="#" class="nav-top-item current"> <!-- Add the class "current" to current menu item -->
-					Articles
+					Products
 					</a>
 					<ul>
-						<li><a href="#">Write a new Article</a></li>
-						<li><a class="current" href="#">Manage Articles</a></li> <!-- Add class "current" to sub menu items also -->
-						<li><a href="#">Manage Comments</a></li>
-						<li><a href="#">Manage Categories</a></li>
+						<li><a href="#">Add Product</a></li>
+						<li><a class="current" href="#">Manage Product</a></li> <!-- Add class "current" to sub menu items also -->
+                        <li><a href="#">Manage Categories</a></li>
+                        <li><a href="#">Manage Tags</a></li>
 					</ul>
 				</li>
 				
 				<li>
 					<a href="#" class="nav-top-item">
-						Pages
+						Users
 					</a>
 					<ul>
-						<li><a href="#">Create a new Page</a></li>
-						<li><a href="#">Manage Pages</a></li>
+						<li><a href="#">Add New User</a></li>
+						<li><a href="#">Manage Users</a></li>
+					</ul>
+                </li>
+                <li>
+					<a href="#" class="nav-top-item">
+						Orders
+					</a>
+					<ul>
+						<li><a href="#">Manage Order s</a></li>
 					</ul>
 				</li>
 				
@@ -71,9 +80,6 @@
 					</a>
 					<ul>
 						<li><a href="#">General</a></li>
-						<li><a href="#">Design</a></li>
-						<li><a href="#">Your Profile</a></li>
-						<li><a href="#">Users and Permissions</a></li>
 					</ul>
 				</li>      
 				

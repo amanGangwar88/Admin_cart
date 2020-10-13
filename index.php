@@ -1,7 +1,5 @@
-<?php 
-    include 'header.php' ;
-    include 'sidebar.php' ;
-?>
+<?php  include 'header.php' ; ?>
+ 
 		
 		<div id="main-content"> <!-- Main Content Section with everything -->
 			
