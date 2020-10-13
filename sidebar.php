@@ -1,6 +1,6 @@
 <div id="sidebar">
     <div id="sidebar-wrapper"> <!-- Sidebar with logo and menu -->
-			
+    <?php $filename = basename($_SERVER['REQUEST_URI']); ?>
 			<h1 id="sidebar-title"><a href="#">Simpla Admin</a></h1>
 		  
 			<!-- Logo (221px wide) -->
@@ -27,9 +27,9 @@
 					</a>
 					<ul>
 						<li><a href="#">Add Product</a></li>
-						<li><a class="current" href="#">Manage Product</a></li> <!-- Add class "current" to sub menu items also -->
-                        <li><a href="#">Manage Categories</a></li>
-                        <li><a href="#">Manage Tags</a></li>
+						<li><a class="current" href="products.php">Manage Product</a></li> <!-- Add class "current" to sub menu items also -->
+                        <li><a href="categories.php">Manage Categories</a></li>
+                        <li><a href="tags.php">Manage Tags</a></li>
 					</ul>
 				</li>
 				
