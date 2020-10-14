@@ -16,5 +16,5 @@
 </head>
 	<body><div id="body-wrapper"> <!-- Wrapper for the radial gradient background -->
         
-    <?php include 'sidebar.php' ?>
+<?php include 'sidebar.php' ?>
 		
