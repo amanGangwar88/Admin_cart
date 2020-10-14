@@ -34,13 +34,6 @@
 			$conn->query($delete);
 		}
 	}
-	if(isset($_GET['action']) && isset($_GET['id']))
-	{
-		if($_GET['action']=='edit')
-		{
-			 $update = "UPDATE products SET  WHERE `product_id`='$id' ";
-		}
-	}
 	 
 ?>
  
