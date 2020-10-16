@@ -1,9 +1,10 @@
 <?php  
- session_start();
+    session_start(); 
     include 'config.php' ;
     include 'header.php' ; 
     if(isset($_POST['submit'])){
-      $product_id = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+	  $product_id = isset($_POST['product_id']) ? $_POST['product_id'] : '';
+	  $category_id = isset($_POST['category_id']) ? $_POST['category_id'] : '';
 	  $name = isset($_POST['name']) ? $_POST['name'] : '';
 	  $price = isset($_POST['price']) ? $_POST['price'] : '';
 	 
@@ -14,10 +15,11 @@
 	  move_uploaded_file($filetempname, $folder);
 	  
 	  
-      $category = isset($_POST['category']) ? $_POST['category'] : '';
+	  $category = isset($_POST['category']) ? $_POST['category'] : '';
+	  $tag = isset($_POST['tag']) ? $_POST['tag'] : '';
       $description = isset($_POST['description']) ? $_POST['description'] : '';
-     
-      $sql = "INSERT INTO products(`product_id`, `name`, `price`,`image`,`Category`,`description`) VALUES('$product_id', '$name', '$price', '$filename', '$category', '$description')";         
+	  
+      $sql = "INSERT INTO products(`product_id`, `category_id`, `name`, `price`,`image`,`Category`, `tag`,`description`) VALUES('$product_id', '$category_id', '$name', '$price', '$filename', '$category', '$tag', '$description')";         
 		    if ($conn->query($sql) === TRUE) {
 					echo "New record created successfully";
 				} else {
@@ -88,10 +90,12 @@
 								   <th><input class="check-all" type="checkbox" /></th>
 								   <th>Image</th>
 								   <th>Product_id</th>
+								   <th>Category_id</th>
 								   <th>Name</th>
 								   <th>Price</th>
                                     
-                                   <th>Category</th>
+								   <th>Category</th>
+								   <th>Tags</th>
                                    <!--<th>Tags</th>-->
                                    <th>Description</th>
                                    <th>Action</th>
@@ -133,7 +137,7 @@
 										while($row = $result->fetch_assoc())
 										{
 											echo "<tr><td><input type='checkbox' /></td>";
-											echo "<td><img src='Resources/images/".$row['image']."'></td><td>".$row['product_id']."</td><td>".$row['name']."</td><td>".$row['price']."</td><td>".$row['Category']."</td><td>".$row['description']."</td>";
+											echo "<td><img src='Resources/images/".$row['image']."'></td><td>".$row['product_id']."</td><td>".$row['category_id']."</td><td>".$row['name']."</td><td>".$row['price']."</td><td>".$row['Category']."</td><td>".$row['tag']."</td><td>".$row['description']."</td>";
 											echo "<td>";
 											echo "<a href='products.php?action=edit&id=".$row['product_id']."' title='Edit'><img src='resources/images/icons/pencil.png' alt='Edit' /></a>";
 											echo '<a href="products.php?action=delete&id='.$row['product_id'].'" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a>';
@@ -155,6 +159,11 @@
 								<p>
 									<label>Product_id</label>
 										<input class="text-input small-input" type="text" id="small-input" name="product_id" />   <!-- Classes for input-notification: success, error, information, attention -->
+										<br /> 
+								</p>
+								<p>
+									<label>Category_id</label>
+										<input class="text-input small-input" type="text" id="small-input" name="category_id" />   <!-- Classes for input-notification: success, error, information, attention -->
 										<br /> 
                                 </p>
                                 
@@ -185,10 +194,10 @@
 									</select>
                                 </p>
 
-								<!--<p>
+								<p>
 									<label>Tags</label>
-									<input type="checkbox" name="checkbox1" /> Fashion<input type="checkbox" name="checkbox2" /> Ecommerce<input type="checkbox" name="checkbox3" />Shop <input type="checkbox" name="checkbox4" /> Hand Bag<input type="checkbox" name="checkbox5" /> Laptop<input type="checkbox" name="checkbox6" />Headphone
-								</p>-->
+									<input type="checkbox" value="Fashion" name="tag" /> Fashion<input type="checkbox" value="Ecommerce" name="tag" /> Ecommerce<input type="checkbox" value="Shop" name="tag" />Shop <input type="checkbox" value="Hand Bag" name="tag" /> Hand Bag<input type="checkbox" value="Laptop" name="tag" /> Laptop<input type="checkbox" value="Headphone" name="tag" />Headphone
+								</p>
 								 
 								<p>
 									<label>Discription</label>

@@ -4,12 +4,22 @@
     if(isset($_POST['submit'])){
 		$cat_id = isset($_POST['cat_id']) ? $_POST['cat_id'] : '';
 		$name = isset($_POST['name']) ? $_POST['name'] : '';
-		$sql = "INSERT INTO categories(`cat_id`, `name` ) VALUES('$cat_id', '$name')";         
+		$sql = "INSERT INTO categories(`category_id`, `name` ) VALUES('$cat_id', '$name')";         
 		    if ($conn->query($sql) === TRUE) {
 					echo "New record created successfully";
 				} else {
 					echo "Error:" . $conn->error;					 
 				}	
+				 
+	}
+	if(isset($_GET['action']) && isset($_GET['id']))
+	{   
+		$id = $_GET['id'];
+		if($_GET['action']=='delete')
+		{
+			$delete="DELETE FROM categories WHERE `category_id`='$id'" ;
+			$conn->query($delete);
+		}
 	}
 ?>
  
@@ -61,11 +71,9 @@
 							<thead>
 								<tr>
 								   <th><input class="check-all" type="checkbox" /></th>
-								   <th>Column 1</th>
-								   <th>Column 2</th>
-								   <th>Column 3</th>
-								   <th>Column 4</th>
-								   <th>Column 5</th>
+								   <th>Category_id</th>
+								   <th>Name</th>
+								   <th>Action</th>
 								</tr>
 								
 							</thead>
@@ -96,117 +104,25 @@
 							</tfoot>
 						 
 							<tbody>
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
+									<?php
+											$table_data = "SELECT * FROM categories" ;
+											$result = $conn -> query($table_data);
+											if($result->num_rows >0)
+											{
+												while($row = $result->fetch_assoc())
+												{
+													echo "<tr><td><input type='checkbox' /></td>";
+													echo "<td>".$row['category_id']."</td><td>".$row['name']."</td>";
+													echo "<td>";
+													echo "<a href='categories.php?action=edit&id=".$row['category_id']."' title='Edit'><img src='resources/images/icons/pencil.png' alt='Edit' /></a>";
+													echo '<a href="categories.php?action=delete&id='.$row['category_id'].'" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a>';
+													echo "<a href='#' title='Edit Meta'><img src='resources/images/icons/hammer_screwdriver.png' alt='Edit Meta' /></a>";
+													echo "</td></tr>";
+												}
+											}                                      
+									?>
 								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td> 
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
-								
-								<tr>
-									<td><input type="checkbox" /></td>
-									<td>Lorem ipsum dolor</td>
-									<td><a href="#" title="title">Sit amet</a></td>
-									<td>Consectetur adipiscing</td>
-									<td>Donec tortor diam</td>
-									<td>
-										<!-- Icons -->
-										 <a href="#" title="Edit"><img src="resources/images/icons/pencil.png" alt="Edit" /></a>
-										 <a href="#" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a> 
-										 <a href="#" title="Edit Meta"><img src="resources/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a>
-									</td>
-								</tr>
+								 
 							</tbody>
 							
 						</table>
@@ -215,7 +131,7 @@
 					
 					<div class="tab-content" id="tab2">
 					
-						<form action="#" method="post">
+						<form action="" method="POST">
 							
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
 								
