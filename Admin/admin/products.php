@@ -1,5 +1,5 @@
 <?php  
-    session_start(); 
+   
     include 'config.php' ;
     include 'header.php' ; 
     if(isset($_POST['submit'])){
@@ -21,11 +21,28 @@
 	  
       $sql = "INSERT INTO products(`product_id`, `category_id`, `name`, `price`,`image`,`Category`, `tag`,`description`) VALUES('$product_id', '$category_id', '$name', '$price', '$filename', '$category', '$tag', '$description')";         
 		    if ($conn->query($sql) === TRUE) {
-					echo "New record created successfully";
+					 
 				} else {
 					echo "Error:" . $conn->error;					 
 				}	
-
+		if(isset($_GET['action']) && isset($_GET['id']))
+		{   
+			$id = $_GET['id'];
+			if($_GET['action']=='edit')
+			{  
+				$update="UPDATE products SET `product_id`='$product_id', `category_id`='$category_id', `name`='$name', `price`='$price'   WHERE `product_id`='$id' " ;
+				$conn->query($update);
+			}
+		}
+		else
+		{
+			$sql= "INSERT INTO products('name') VALUES('.$name.') ";
+			if ($conn->query($sql) === TRUE) {
+				echo "New record created successfully";
+			} else {
+				echo "Error:" . $conn->error;					 
+			}
+		}
 	}
 	if(isset($_GET['action']) && isset($_GET['id']))
 	{   
@@ -36,6 +53,7 @@
 			$conn->query($delete);
 		}
 	}
+	 
 	 
 ?>
  
@@ -139,7 +157,7 @@
 											echo "<tr><td><input type='checkbox' /></td>";
 											echo "<td><img src='Resources/images/".$row['image']."'></td><td>".$row['product_id']."</td><td>".$row['category_id']."</td><td>".$row['name']."</td><td>".$row['price']."</td><td>".$row['Category']."</td><td>".$row['tag']."</td><td>".$row['description']."</td>";
 											echo "<td>";
-											echo "<a href='products.php?action=edit&id=".$row['product_id']."' title='Edit'><img src='resources/images/icons/pencil.png' alt='Edit' /></a>";
+											echo "<a href='products.php?action=edit&id=".$row['product_id']."&cat_id=".$row['category_id']."&name=".$row['name']."&price=".$row['price']."&image=".$row['image']."&category=".$row['Category']."&tag=".$row['tag']."&description=".$row['description']." title='Edit'><img src='resources/images/icons/pencil.png' alt='Edit' /></a>";
 											echo '<a href="products.php?action=delete&id='.$row['product_id'].'" title="Delete"><img src="resources/images/icons/cross.png" alt="Delete" /></a>';
 											echo "<a href='#' title='Edit Meta'><img src='resources/images/icons/hammer_screwdriver.png' alt='Edit Meta' /></a>";
 											echo "</td></tr>";
@@ -158,29 +176,29 @@
 							<fieldset> <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
 								<p>
 									<label>Product_id</label>
-										<input class="text-input small-input" type="text" id="small-input" name="product_id" />   <!-- Classes for input-notification: success, error, information, attention -->
+								<input class="text-input small-input" type="text" id="small-input" name="product_id" <?php if(isset($_GET['id'])): ?> value='<?php echo $_GET['id'] ;?>' <?php endif; ?> required/>   <!-- Classes for input-notification: success, error, information, attention -->
 										<br /> 
 								</p>
 								<p>
 									<label>Category_id</label>
-										<input class="text-input small-input" type="text" id="small-input" name="category_id" />   <!-- Classes for input-notification: success, error, information, attention -->
+										<input class="text-input small-input" type="text" id="small-input" name="category_id" <?php if(isset($_GET['cat_id'])): ?> value='<?php echo $_GET['cat_id'] ;?>' <?php endif; ?> required/>   <!-- Classes for input-notification: success, error, information, attention -->
 										<br /> 
                                 </p>
                                 
 								<p>
 									<label>Name</label>
-										<input class="text-input small-input" type="text" id="small-input" name="name" />   <!-- Classes for input-notification: success, error, information, attention -->
+										<input class="text-input small-input" type="text" id="small-input" name="name" <?php if(isset($_GET['name'])): ?> value='<?php echo $_GET['name'] ;?>' <?php endif; ?> required />  <!-- Classes for input-notification: success, error, information, attention -->
 										<br /> 
 								</p>
 								
 								<p>
 									<label>Price</label>
-									<input class="text-input medium-input datepicker" type="text" id="medium-input" name="price" /> 
+									<input class="text-input medium-input datepicker" type="text" id="medium-input" name="price" <?php if(isset($_GET['price'])): ?> value='<?php echo $_GET['price'] ;?>' <?php endif; ?>  required/> 
 								</p>
                                 
 								<p>
 									<label>Insert Product Image</label>
-										<input class="text-input small-input" type="file" id="image" name="image"  /> 
+										<input class="text-input small-input" type="file" id="image" name="image" <?php if(isset($_GET['image'])): ?> value='<?php echo $_GET['image'] ;?>' <?php endif; ?> required /> 
 								</p>
                                 
                                 <p>
@@ -201,7 +219,7 @@
 								 
 								<p>
 									<label>Discription</label>
-									<textarea class="text-input textarea wysiwyg" id="textarea" name="description" cols="79" rows="15"></textarea>
+									<textarea class="text-input textarea wysiwyg" id="textarea" name="description" <?php if(isset($_GET['description'])): ?> value='<?php echo $_GET['description'] ;?>' <?php endif; ?> cols="79" rows="15"></textarea>
 								</p>
 								
 								<p>

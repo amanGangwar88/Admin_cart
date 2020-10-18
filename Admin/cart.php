@@ -1,3 +1,4 @@
+<?php  echo "Hello".$_POST['id'] ; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -360,7 +361,7 @@
                       <tr>
                         <td><a class="remove" href="#"><fa class="fa fa-close"></fa></a></td>
                         <td><a href="#"><img src="img/man/polo-shirt-1.png" alt="img"></a></td>
-                        <td><a class="aa-cart-title" href="#">Polo T-Shirt</a></td>
+                        <td><a class="aa-cart-title" href="#"> </a></td>
                         <td>$250</td>
                         <td><input class="aa-cart-quantity" type="number" value="1"></td>
                         <td>$250</td>

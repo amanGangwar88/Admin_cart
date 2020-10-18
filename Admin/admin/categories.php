@@ -137,13 +137,13 @@
 								
 								<p>
 									<label>Category ID</label>
-										<input class="text-input small-input" type="text" id="small-input" name="cat_id" /> 
+										<input class="text-input small-input" type="text" id="small-input" name="cat_id" required /> 
 									 
 								</p>
 								 
 								<p>
 									<label>Name</label>
-										<input class="text-input small-input" type="text" id="small-input" name="name" /> 
+										<input class="text-input small-input" type="text" id="small-input" name="name" required/> 
 									 
 								</p>
 

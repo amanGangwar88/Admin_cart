@@ -21,6 +21,7 @@
 			$conn->query($delete);
 		}
 	}
+	
 ?>
  
 		
@@ -135,13 +136,13 @@
 								
 							<p>
 									<label>Tag ID</label>
-										<input class="text-input small-input" type="text" id="small-input" name="tag_id" /> 
+										<input class="text-input small-input" type="text" id="small-input" name="tag_id" required/> 
 									 
 								</p>
 								 
 								<p>
 									<label>Name</label>
-										<input class="text-input small-input" type="text" id="small-input" name="name" /> 
+										<input class="text-input small-input" type="text" id="small-input" name="name" required/> 
 									 
 								</p>
 
