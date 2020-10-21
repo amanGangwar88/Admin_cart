@@ -18,7 +18,7 @@
 	  $category = isset($_POST['category']) ? $_POST['category'] : '';
 	  $tag = isset($_POST['tag']) ? $_POST['tag'] : '';
       $description = isset($_POST['description']) ? $_POST['description'] : '';
-	  
+	  $tag = implode(",", $_POST['tag']);
       $sql = "INSERT INTO products(`product_id`, `category_id`, `name`, `price`,`image`,`Category`, `tag`,`description`) VALUES('$product_id', '$category_id', '$name', '$price', '$filename', '$category', '$tag', '$description')";         
 		    if ($conn->query($sql) === TRUE) {
 					 
@@ -53,7 +53,9 @@
 			$conn->query($delete);
 		}
 	}
-	 
+	
+ 
+ 
 	 
 ?>
  
@@ -214,7 +216,7 @@
 
 								<p>
 									<label>Tags</label>
-									<input type="checkbox" value="Fashion" name="tag" /> Fashion<input type="checkbox" value="Ecommerce" name="tag" /> Ecommerce<input type="checkbox" value="Shop" name="tag" />Shop <input type="checkbox" value="Hand Bag" name="tag" /> Hand Bag<input type="checkbox" value="Laptop" name="tag" /> Laptop<input type="checkbox" value="Headphone" name="tag" />Headphone
+									<input type="checkbox" value="Fashion" name="tag[]" /> Fashion<input type="checkbox" value="Ecommerce" name="tag[]" /> Ecommerce<input type="checkbox" value="Shop" name="tag[]" />Shop <input type="checkbox"value="HandBag"  name="tag[]" /> Hand Bag<input type="checkbox" value="Laptop" name="tag[]" /> Laptop<input type="checkbox" value="Headphone"  name="tag[]" />Headphone
 								</p>
 								 
 								<p>

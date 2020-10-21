@@ -11,8 +11,6 @@
       $page=1;
     }
       $offset=($page-1)*$limit;
-      
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -397,7 +395,7 @@
 										{
                       echo '<ul><li><figure>';
                       echo '<a class="aa-product-img" href="#"><img src="admin/Resources/images/'.$row['image'].'"></a>';
-                      echo '<a class="aa-add-card-btn" data-product_id='.$row['product_id'].' href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>';
+                      echo '<a class="aa-add-card-btn" data-product_id='.$row['product_id'].' data-type="add" data-qty=1  href="#><span class="fa fa-shopping-cart"></span>Add To Cart</a>';
                       echo '<figcaption>';
                       echo '<h4 class="aa-product-title"><a href="#">'.$row['name'].'</a></h4>';
                       echo '<span class="aa-product-price">'.$row['price'].'</span>';
@@ -407,30 +405,34 @@
                       echo '<div class="aa-product-hvr-content">';
                       echo '<a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>';
                       echo '<a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>';
-                      echo '<a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>';
+                      echo '<a href="#"  data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search search"  data-id="'.$row['product_id'].'"></span></a>';
                       echo '</div>';
                       echo '<span class="aa-badge aa-hot" href="#">HOT!</span>';
                       echo '</li></ul>';
 										}
 									}                                      
                 ?>
-                <script >
-                  $(document).ready(function(){
-                    $('.aa-add-card-btn').click(function(){
-                      var product_id = $(this).data('product_id');
-                      //console.log(' clicked '+product_id);
-                      $.ajax({
-                         
-                            method: "POST",
-                            url: "cart.php", 
-                            data: {id: product_id},
-                            dataType: "json"
-                        })done(function( msg ){
-                            console.log(msg );
-                        });
-                    });
-                  });
-                </script>
+                       <script>
+                                $(document).ready(function(){
+                                  $(".search").click(function(){
+                                    var product_id=$(this).data('id');
+                                  // alert(product_id);
+                                    $.ajax({
+                                      method:"POST",
+                                      url:"view.php",
+                                      data: {id : product_id},
+                                      dataType:"json"
+                                    })
+                                    .done(function( msg ) {
+                                      $(".name").html(msg.product.name);
+                                      $(".aa-product-view-price").html(msg.product.price);
+                                      $(".Discription").html(msg.product.description);
+                                      
+                                      $(".simpleLens-lens-image").attr('src', 'msg.product.image');
+                                    });
+                                  });
+                                });  
+                        </script> 
  
               <!-- quick view modal -->                  
               <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -445,8 +447,7 @@
                             <div class="simpleLens-gallery-container" id="demo-1">
                               <div class="simpleLens-container">
                                   <div class="simpleLens-big-image-container">
-                                      <a class="simpleLens-lens-image" data-lens-image="img/view-slider/large/polo-shirt-1.png">
-                                          <img src="img/view-slider/medium/polo-shirt-1.png" class="simpleLens-big-image">
+                                      <a class="simpleLens-lens-image" data-lens-image="img/view-slider/large/polo-shirt-1.png">                                          
                                       </a>
                                   </div>
                               </div>
@@ -474,12 +475,12 @@
                         <!-- Modal view content -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div class="aa-product-view-content">
-                            <h3>T-Shirt</h3>
+                            <h3 class="name"></h3>
                             <div class="aa-price-block">
-                              <span class="aa-product-view-price">$34.99</span>
+                              <span class="aa-product-view-price"></span>
                               <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi, veritatis quae repudiandae quod nulla porro quidem, itaque quis quaerat!</p>
+                            <p class="Discription"></p>
                             <h4>Size</h4>
                             <div class="aa-prod-view-size">
                               <a href="#">S</a>
@@ -824,7 +825,7 @@
   </div>
 
 
-    
+  
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

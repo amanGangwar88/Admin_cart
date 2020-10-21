@@ -1,4 +1,4 @@
-<?php  echo "Hello".$_POST['id'] ; ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
   <head>
