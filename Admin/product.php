@@ -427,8 +427,8 @@
                                       $(".name").html(msg.product.name);
                                       $(".aa-product-view-price").html(msg.product.price);
                                       $(".Discription").html(msg.product.description);
-                                      
-                                      $(".simpleLens-lens-image").attr('src', 'msg.product.image');
+                                      $(".simpleLens-lens-image").html('<img src="admin/Resources/images/'+msg.product.image+'">');
+                                      //$(".simpleLens-lens-image").attr('src', 'admin/Resources/images/'+msg.product.image);
                                     });
                                   });
                                 });  
@@ -447,7 +447,8 @@
                             <div class="simpleLens-gallery-container" id="demo-1">
                               <div class="simpleLens-container">
                                   <div class="simpleLens-big-image-container">
-                                      <a class="simpleLens-lens-image" data-lens-image="img/view-slider/large/polo-shirt-1.png">                                          
+                                      <a class="simpleLens-lens-image" data-lens-image=" ">
+                                          <img src="" class="simpleLens-big-image">
                                       </a>
                                   </div>
                               </div>
