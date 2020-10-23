@@ -336,7 +336,7 @@
    </div>
   </section>
   <!-- / catg header banner section -->
-
+           
  <!-- Cart view section -->
  <section id="cart-view">
    <div class="container">
@@ -466,7 +466,7 @@
                   <div class="aa-footer-widget">
                     <h3>Knowledge Base</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
+                      <li><a href="#">Delivery</a></li>w
                       <li><a href="#">Returns</a></li>
                       <li><a href="#">Services</a></li>
                       <li><a href="#">Discount</a></li>

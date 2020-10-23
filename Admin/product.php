@@ -394,8 +394,8 @@
 										while($row = $result->fetch_assoc())
 										{
                       echo '<ul><li><figure>';
-                      echo '<a class="aa-product-img" href="#"><img src="admin/Resources/images/'.$row['image'].'"></a>';
-                      echo '<a class="aa-add-card-btn" data-product_id='.$row['product_id'].' data-type="add" data-qty=1  href="#><span class="fa fa-shopping-cart"></span>Add To Cart</a>';
+                      echo '<a class="aa-product-img" href="product-detail.php?id='.$row['product_id'].'"><img src="admin/Resources/images/'.$row['image'].'"></a>';
+                      echo '<a class="aa-add-card-btn" data-product_id='.$row['product_id'].' data-type="add" data-qty=1  href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>';
                       echo '<figcaption>';
                       echo '<h4 class="aa-product-title"><a href="#">'.$row['name'].'</a></h4>';
                       echo '<span class="aa-product-price">'.$row['price'].'</span>';
@@ -427,12 +427,32 @@
                                       $(".name").html(msg.product.name);
                                       $(".aa-product-view-price").html(msg.product.price);
                                       $(".Discription").html(msg.product.description);
-                                      $(".simpleLens-lens-image").html('<img src="admin/Resources/images/'+msg.product.image+'">');
-                                      //$(".simpleLens-lens-image").attr('src', 'admin/Resources/images/'+msg.product.image);
+                                      $(".simpleLens-big-image").attr('src', 'admin/Resources/images/'+msg.product.image);
+                                      $(".simpleLens-thumbnail-wrapper").html('<img src="admin/Resources/images/'+msg.product.image+'" height="60" width="50">');
                                     });
                                   });
                                 });  
                         </script> 
+                        <script>
+                           $(document).ready(function(){
+                            $(".aa-add-card-btn").click(function(){
+                              var product_id=$(this).data('product_id');
+                              var type=$(this).data('type');
+                              var qty=$(this).data('qty');
+                              $.ajax({
+                                      method:"POST",
+                                      url:"addtocart.php",
+                                      data: {product_id : product_id},
+                                      dataType:"json"
+                                    })
+                                    .done(function( msg ) {
+                                      alert(msg.product.product_id);
+                                       
+                                    });
+                             });
+                           });
+                        </script>
+                        
  
               <!-- quick view modal -->                  
               <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,7 +1,7 @@
  
 <?php   
         include 'admin/config.php' ;
-        $id=$_POST['id'];
+        $id=$_POST['product_id'];
         $sql="SELECT * FROM products WHERE product_id = '$id' ";
         $result=$conn->query($sql);
         if ($result->num_rows > 0) {
@@ -10,8 +10,8 @@
                  
               echo json_encode(array('product'=>$row));
             }
-          }
- 
+        }
+        
 ?>
  
  
